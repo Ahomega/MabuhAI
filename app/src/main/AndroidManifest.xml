@@ -17,6 +17,7 @@
         <activity android:name=".ElderlyHomeActivity" />
         <activity android:name=".PrivacyNoticeActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".SignUpActivity" />
 
         <activity android:name=".RoleSelectionActivity"
             android:exported="true">
