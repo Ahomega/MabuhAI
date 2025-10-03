@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <LinearLayout
+      android:orientation="vertical"
+      android:padding="16dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Family Dashboard"
+        android:textSize="22sp"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvLatest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latest: ECG normal | HR 72 bpm | BP 120/80"
+        android:paddingBottom="8dp" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/ecgChart"
+        android:layout_width="match_parent"
+        android:layout_height="240dp" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/ppgChart"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/btnHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Full History"
+        android:layout_marginTop="12dp" />
+  </LinearLayout>
+</ScrollView>

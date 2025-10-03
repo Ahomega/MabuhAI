@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Thesis</string>
+    <string-array name="user_roles">
+        <item>Elderly</item>
+        <item>Family</item>
+    </string-array>
+</resources>
