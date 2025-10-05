@@ -1,61 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:padding="24dp"
-    tools:context=".LoginActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <!-- App title -->
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MabuhAI Login"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="32dp"
-        android:gravity="center" />
-
-    <!-- Email input -->
     <EditText
         android:id="@+id/editTextEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:padding="12dp"
-        android:layout_marginBottom="16dp"
-        android:background="@android:drawable/edit_text" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-    <!-- Password input -->
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textPassword"
-        android:padding="12dp"
-        android:layout_marginBottom="24dp"
-        android:background="@android:drawable/edit_text" />
-
-    <!-- Login button -->
-    <Button
-        android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"/>
+
+    <Button
+        android:id="@+id/buttonLogin"
         android:text="Login"
-        android:padding="12dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:textColor="@android:color/white" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"/>
 
     <Button
         android:id="@+id/buttonSignup"
+        android:text="Sign Up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:layout_marginTop="8dp"/>
-
+        android:layout_marginTop="12dp"/>
 </LinearLayout>

@@ -16,69 +16,54 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var passwordInput: EditText
     private lateinit var loginBtn: Button
     private lateinit var signupBtn: Button
-    private var userRole: String? = null
+    private val databaseUrl =
+        "https://thesis-test-274c6-default-rtdb.asia-southeast1.firebasedatabase.app/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         mAuth = FirebaseAuth.getInstance()
-
-        // Get role from RoleSelectionActivity
-        userRole = intent.getStringExtra("role")
-
         emailInput = findViewById(R.id.editTextEmail)
         passwordInput = findViewById(R.id.editTextPassword)
         loginBtn = findViewById(R.id.buttonLogin)
-        signupBtn = findViewById(R.id.buttonSignup) // new button
+        signupBtn = findViewById(R.id.buttonSignup)
 
-        // Login button
         loginBtn.setOnClickListener {
             val email = emailInput.text.toString().trim()
             val password = passwordInput.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val uid = mAuth.currentUser?.uid
-                        val database = FirebaseDatabase.getInstance(
-                            "https://thesis-test-274c6-default-rtdb.asia-southeast1.firebasedatabase.app/"
-                        ).reference.child("users").child(uid!!)
-
-                        database.get().addOnSuccessListener { snapshot ->
-                            val role = snapshot.child("role").getValue(String::class.java)
-
-                            when (role) {
-                                "Elderly" -> {
-                                    startActivity(Intent(this, ElderlyHomeActivity::class.java))
-                                    finish()
-                                }
-                                "Family" -> {
-                                    startActivity(Intent(this, FamilyHomeActivity::class.java))
-                                    finish()
-                                }
-                                else -> {
-                                    Toast.makeText(this, "Role not assigned", Toast.LENGTH_SHORT).show()
-                                }
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val uid = mAuth.currentUser!!.uid
+                    val db = FirebaseDatabase.getInstance(databaseUrl).reference.child("users").child(uid)
+                    db.get().addOnSuccessListener { snapshot ->
+                        val role = snapshot.child("role").getValue(String::class.java)
+                        when (role) {
+                            "Patient" -> {
+                                startActivity(Intent(this, PatientHomeActivity::class.java))
+                                finish()
                             }
+                            "Family" -> {
+                                startActivity(Intent(this, FamilyHomeActivity::class.java))
+                                finish()
+                            }
+                            else -> Toast.makeText(this, "Role not assigned", Toast.LENGTH_SHORT).show()
                         }
-                    } else {
-                        val errorMessage = task.exception?.message ?: "Unknown error"
-                        Toast.makeText(this, "Login failed: $errorMessage", Toast.LENGTH_LONG).show()
                     }
+                } else {
+                    Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                 }
+            }
         }
 
-        // Sign up button
         signupBtn.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            intent.putExtra("role", userRole) // pass along the selected role
-            startActivity(intent)
+            startActivity(Intent(this, PrivacyNoticeActivity::class.java))
         }
     }
 }

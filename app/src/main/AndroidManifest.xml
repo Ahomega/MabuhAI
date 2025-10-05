@@ -14,12 +14,12 @@
         android:theme="@style/Theme.Thesis" >
 
         <activity android:name=".FamilyHomeActivity" />
-        <activity android:name=".ElderlyHomeActivity" />
+        <activity android:name=".PatientHomeActivity" />
         <activity android:name=".PrivacyNoticeActivity" />
-        <activity android:name=".LoginActivity" />
         <activity android:name=".SignUpActivity" />
+        <activity android:name=".ChatActivity" />
 
-        <activity android:name=".RoleSelectionActivity"
+        <activity android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
